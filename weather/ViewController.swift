@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         // todo get city id from somewhere
-        let cityID = "524901"
-        getWeatherFor(cityID)
+        let coordinates = "37.8267,-122.423"
+        getWeatherFor(coordinates)
         
     }
 
@@ -32,12 +32,12 @@ class ViewController: UIViewController {
     }
     
 
-    func getWeatherFor(cityID: String) {
+    func getWeatherFor(coordinates: String) {
         // Call OpenWeather API with a given city id and pre-defined api key
-        let APIKey = "d15b15acb4da9baaaaacd99f93427014"
+        let APIKey = "1a263a07be7aa120ed40d088a0e2eaa6"
         
         // Construct url
-        let URL = "http://api.openweathermap.org/data/2.5/forecast/city?id=\(cityID)&APPID=\(APIKey)"
+        let URL = "https://api.forecast.io/forecast/\(APIKey)/\(coordinates)"
         
         let manager: AFHTTPRequestOperationManager = AFHTTPRequestOperationManager()
         
