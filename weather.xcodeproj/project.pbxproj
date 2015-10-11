@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		147AA02A1BCA515B00ECBF88 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0181BCA515B00ECBF88 /* AFHTTPRequestOperation.m */; settings = {ASSET_TAGS = (); }; };
+		147AA02B1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA01A1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m */; settings = {ASSET_TAGS = (); }; };
+		147AA02C1BCA515B00ECBF88 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA01C1BCA515B00ECBF88 /* AFHTTPSessionManager.m */; settings = {ASSET_TAGS = (); }; };
+		147AA02D1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA01F1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m */; settings = {ASSET_TAGS = (); }; };
+		147AA02E1BCA515B00ECBF88 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0211BCA515B00ECBF88 /* AFSecurityPolicy.m */; settings = {ASSET_TAGS = (); }; };
+		147AA02F1BCA515B00ECBF88 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0231BCA515B00ECBF88 /* AFURLConnectionOperation.m */; settings = {ASSET_TAGS = (); }; };
+		147AA0301BCA515B00ECBF88 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0251BCA515B00ECBF88 /* AFURLRequestSerialization.m */; settings = {ASSET_TAGS = (); }; };
+		147AA0311BCA515B00ECBF88 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0271BCA515B00ECBF88 /* AFURLResponseSerialization.m */; settings = {ASSET_TAGS = (); }; };
+		147AA0321BCA515B00ECBF88 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AA0291BCA515B00ECBF88 /* AFURLSessionManager.m */; settings = {ASSET_TAGS = (); }; };
 		14B4F61F1BC4F85F00EEF116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4F61E1BC4F85F00EEF116 /* AppDelegate.swift */; };
 		14B4F6211BC4F85F00EEF116 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14B4F6201BC4F85F00EEF116 /* ViewController.swift */; };
 		14B4F6241BC4F85F00EEF116 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14B4F6221BC4F85F00EEF116 /* Main.storyboard */; };
@@ -15,6 +24,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		147AA0171BCA515B00ECBF88 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		147AA0181BCA515B00ECBF88 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		147AA0191BCA515B00ECBF88 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		147AA01A1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		147AA01B1BCA515B00ECBF88 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		147AA01C1BCA515B00ECBF88 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		147AA01D1BCA515B00ECBF88 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		147AA01E1BCA515B00ECBF88 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		147AA01F1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		147AA0201BCA515B00ECBF88 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		147AA0211BCA515B00ECBF88 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		147AA0221BCA515B00ECBF88 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		147AA0231BCA515B00ECBF88 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		147AA0241BCA515B00ECBF88 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		147AA0251BCA515B00ECBF88 /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		147AA0261BCA515B00ECBF88 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		147AA0271BCA515B00ECBF88 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		147AA0281BCA515B00ECBF88 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		147AA0291BCA515B00ECBF88 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		147AA0331BCA51D900ECBF88 /* weather-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "weather-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		14B4F61B1BC4F85F00EEF116 /* weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14B4F61E1BC4F85F00EEF116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14B4F6201BC4F85F00EEF116 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +64,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		147AA0161BCA515B00ECBF88 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				147AA0171BCA515B00ECBF88 /* AFHTTPRequestOperation.h */,
+				147AA0181BCA515B00ECBF88 /* AFHTTPRequestOperation.m */,
+				147AA0191BCA515B00ECBF88 /* AFHTTPRequestOperationManager.h */,
+				147AA01A1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m */,
+				147AA01B1BCA515B00ECBF88 /* AFHTTPSessionManager.h */,
+				147AA01C1BCA515B00ECBF88 /* AFHTTPSessionManager.m */,
+				147AA01D1BCA515B00ECBF88 /* AFNetworking.h */,
+				147AA01E1BCA515B00ECBF88 /* AFNetworkReachabilityManager.h */,
+				147AA01F1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m */,
+				147AA0201BCA515B00ECBF88 /* AFSecurityPolicy.h */,
+				147AA0211BCA515B00ECBF88 /* AFSecurityPolicy.m */,
+				147AA0221BCA515B00ECBF88 /* AFURLConnectionOperation.h */,
+				147AA0231BCA515B00ECBF88 /* AFURLConnectionOperation.m */,
+				147AA0241BCA515B00ECBF88 /* AFURLRequestSerialization.h */,
+				147AA0251BCA515B00ECBF88 /* AFURLRequestSerialization.m */,
+				147AA0261BCA515B00ECBF88 /* AFURLResponseSerialization.h */,
+				147AA0271BCA515B00ECBF88 /* AFURLResponseSerialization.m */,
+				147AA0281BCA515B00ECBF88 /* AFURLSessionManager.h */,
+				147AA0291BCA515B00ECBF88 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
 		14B4F6121BC4F85F00EEF116 = {
 			isa = PBXGroup;
 			children = (
@@ -54,6 +109,8 @@
 		14B4F61D1BC4F85F00EEF116 /* weather */ = {
 			isa = PBXGroup;
 			children = (
+				147AA0331BCA51D900ECBF88 /* weather-Bridging-Header.h */,
+				147AA0161BCA515B00ECBF88 /* AFNetworking */,
 				14B4F61E1BC4F85F00EEF116 /* AppDelegate.swift */,
 				14B4F6201BC4F85F00EEF116 /* ViewController.swift */,
 				14B4F6221BC4F85F00EEF116 /* Main.storyboard */,
@@ -134,7 +191,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				147AA0301BCA515B00ECBF88 /* AFURLRequestSerialization.m in Sources */,
+				147AA02F1BCA515B00ECBF88 /* AFURLConnectionOperation.m in Sources */,
+				147AA02E1BCA515B00ECBF88 /* AFSecurityPolicy.m in Sources */,
+				147AA02A1BCA515B00ECBF88 /* AFHTTPRequestOperation.m in Sources */,
+				147AA0321BCA515B00ECBF88 /* AFURLSessionManager.m in Sources */,
+				147AA0311BCA515B00ECBF88 /* AFURLResponseSerialization.m in Sources */,
 				14B4F6211BC4F85F00EEF116 /* ViewController.swift in Sources */,
+				147AA02C1BCA515B00ECBF88 /* AFHTTPSessionManager.m in Sources */,
+				147AA02B1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m in Sources */,
+				147AA02D1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m in Sources */,
 				14B4F61F1BC4F85F00EEF116 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,6 +316,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Sereni.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "weather-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -261,6 +328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Sereni.weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "weather-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -283,6 +351,7 @@
 				14B4F62F1BC4F85F00EEF116 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
