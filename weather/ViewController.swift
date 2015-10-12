@@ -136,13 +136,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         coordinates = cities[row].cityCoord
-        
-    }	
-
-    @IBAction func btn1(sender: UIButton) {
         getWeatherFor(coordinates)
         lblTemperature.text = currentWeather.temperature
         
-    }
+    }	
+
+   
    
 }

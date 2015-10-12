@@ -43,16 +43,6 @@
                                     <outlet property="delegate" destination="8bC-Xf-vdC" id="J9Z-LP-KI6"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HF4-4F-TJi">
-                                <rect key="frame" x="20" y="418" width="108" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="108" id="eWU-WU-g4p"/>
-                                </constraints>
-                                <state key="normal" title="Get weather"/>
-                                <connections>
-                                    <action selector="btn1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="45C-rg-vMr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -62,9 +52,7 @@
                             <constraint firstItem="THW-hP-izi" firstAttribute="leading" secondItem="Rzc-en-z8h" secondAttribute="leading" id="Fy6-Jc-asK"/>
                             <constraint firstItem="THW-hP-izi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="29" id="J8t-XK-VRp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Vvr-hn-sCJ" secondAttribute="trailing" constant="42" id="iGZ-5n-WDI"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HF4-4F-TJi" secondAttribute="bottom" constant="152" id="n13-6Y-pfB"/>
                             <constraint firstItem="Rzc-en-z8h" firstAttribute="top" secondItem="THW-hP-izi" secondAttribute="bottom" constant="44" id="tZy-BF-nPZ"/>
-                            <constraint firstItem="Rzc-en-z8h" firstAttribute="leading" secondItem="HF4-4F-TJi" secondAttribute="leading" id="uZF-Gg-qpi"/>
                         </constraints>
                     </view>
                     <connections>
