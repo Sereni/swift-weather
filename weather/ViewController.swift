@@ -8,17 +8,48 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class cityLocation {
     
-    // connect table to code
-    @IBOutlet weak var weatherTableView: UITableView!
+    var cityName: String
+    
+    var cityCoord: String
+    
+    
+    
+    init(cityName: String, cityCoord: String){
+        
+        self.cityName = cityName
+        
+        self.cityCoord = cityCoord
+        
+    }
+    
+}
+
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+    
+    @IBOutlet weak var lblTemperature: UILabel!
+    @IBOutlet weak var lblPressure: UILabel!
+   
+    @IBOutlet weak var pckrCity: UIPickerView!
+    
+    
     
     // кортеж с погодой на этот момент
     // precipitation содержит название иконки, если не будет картинок, можно переделать
+    let cities: [cityLocation] = [
+        cityLocation(cityName: "Moscow", cityCoord: "55.7522,37.6155"),
+        cityLocation(cityName: "St. Petersburg", cityCoord: "59.9386,30.3141"),
+        cityLocation(cityName: "Los Angeles", cityCoord: "37.8267,-122.423")
+    ]
+    
     var currentWeather: (temperature: String, precipitation: String, pressure: String) = ("--", "--", "--")
     
     // массив погоды по дням, устройство как у currentWeather
     var daily: [(temperature: String, precipitation: String, pressure: String)] = []
+    
+    var coordinates = "37.8267,-122.423"
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +59,11 @@ class ViewController: UIViewController {
         // todo check for missing values
         
         // @pluto: самый простой способ "выбрать" город – спросить координаты. сделаешь в интерфейсе возможность?
-        var coordinates = "37.8267,-122.423"
+        
         getWeatherFor(coordinates)
+        
+        self.pckrCity.dataSource = self
+        self.pckrCity.delegate = self
         
     }
 
@@ -83,5 +117,32 @@ class ViewController: UIViewController {
         // convert millibar to mmhg
         return String(format: "%.0f", Double(value)!*0.75)
     }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        return cities.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        
+        return cities[row].cityName
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        coordinates = cities[row].cityCoord
+        
+    }	
 
+    @IBAction func btn1(sender: UIButton) {
+        getWeatherFor(coordinates)
+        lblTemperature.text = currentWeather.temperature
+        
+    }
+   
 }
