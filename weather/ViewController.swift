@@ -60,7 +60,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         // @pluto: самый простой способ "выбрать" город – спросить координаты. сделаешь в интерфейсе возможность?
         
-        getWeatherFor(coordinates)
+        getWeatherFor(coordinates) {(result: (String, String, String)) in
+            self.currentWeather = result
+        }
         
         self.pckrCity.dataSource = self
         self.pckrCity.delegate = self
@@ -73,7 +75,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
 
-    func getWeatherFor(coordinates: String) {
+    func getWeatherFor(coordinates: String, completion: (String, String, String) -> Void) {
         // Call weather API with a given city id and pre-defined api key
         let APIKey = "1a263a07be7aa120ed40d088a0e2eaa6"
         
@@ -89,23 +91,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 // get response data in a dictionary
                 let response = responseObject as! Dictionary<String, AnyObject>
                 
-//                print(response)
-                
                 // get data for current weather
                 let currentData = response["currently"] as! Dictionary<String, AnyObject>
-                
-                // save current weather data to an internal variable
-                self.currentWeather = (self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
-                
-                // get data for the next week
-                let dailyData = response["daily"]
-                // todo process daily data
+
+                completion(self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
             },
             failure: {(operation: AFHTTPRequestOperation, error: NSError) -> Void in
                 print("\(error)")})
-
+        
     }
-    
     
     // American API; must convert measurement units
     func to_centigrade(value: String) -> String {
@@ -136,8 +130,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         coordinates = cities[row].cityCoord
-        getWeatherFor(coordinates)
-        lblTemperature.text = currentWeather.temperature
+        getWeatherFor(coordinates) {(result: (String, String, String)) in
+            self.currentWeather = result
+            self.lblTemperature.text = self.currentWeather.temperature
+        }
+        
         
     }	
 
