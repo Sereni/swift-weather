@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,21 +17,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8zh-tW-ooS">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Temperature" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THW-hP-izi">
+                                <rect key="frame" x="20" y="49" width="296" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="296" id="0f3-3v-BWC"/>
+                                    <constraint firstAttribute="height" constant="91" id="jPZ-O8-UOP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pressure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rzc-en-z8h">
+                                <rect key="frame" x="20" y="184" width="94" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="MCL-dc-of5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vvr-hn-sCJ">
+                                <rect key="frame" x="-62" y="213" width="600" height="216"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="bxh-By-okj"/>
+                                    <outlet property="delegate" destination="8bC-Xf-vdC" id="J9Z-LP-KI6"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8zh-tW-ooS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0Zx-lN-vro"/>
-                            <constraint firstItem="8zh-tW-ooS" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="NHd-g5-YTy"/>
-                            <constraint firstAttribute="trailing" secondItem="8zh-tW-ooS" secondAttribute="trailing" id="WBZ-qe-tMZ"/>
-                            <constraint firstItem="8zh-tW-ooS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sqf-pH-gjX"/>
+                            <constraint firstItem="Vvr-hn-sCJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-82" id="1jy-Yy-b2f"/>
+                            <constraint firstItem="THW-hP-izi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="3OB-cW-MBp"/>
+                            <constraint firstItem="Vvr-hn-sCJ" firstAttribute="top" secondItem="Rzc-en-z8h" secondAttribute="bottom" constant="8" symbolic="YES" id="8xq-5s-mx5"/>
+                            <constraint firstItem="THW-hP-izi" firstAttribute="leading" secondItem="Rzc-en-z8h" secondAttribute="leading" id="Fy6-Jc-asK"/>
+                            <constraint firstItem="THW-hP-izi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="29" id="J8t-XK-VRp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vvr-hn-sCJ" secondAttribute="trailing" constant="42" id="iGZ-5n-WDI"/>
+                            <constraint firstItem="Rzc-en-z8h" firstAttribute="top" secondItem="THW-hP-izi" secondAttribute="bottom" constant="44" id="tZy-BF-nPZ"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="weatherTableView" destination="8zh-tW-ooS" id="ATy-HR-FR4"/>
+                        <outlet property="lblPressure" destination="Rzc-en-z8h" id="fm3-NH-VRW"/>
+                        <outlet property="lblTemperature" destination="THW-hP-izi" id="DD2-fp-wvX"/>
+                        <outlet property="pckrCity" destination="Vvr-hn-sCJ" id="9CG-EA-A0t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
