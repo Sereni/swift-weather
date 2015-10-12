@@ -28,8 +28,12 @@ class ViewController: UIViewController {
         // todo check for missing values
         
         // @pluto: самый простой способ "выбрать" город – спросить координаты. сделаешь в интерфейсе возможность?
+        print(currentWeather.temperature, currentWeather.precipitation, currentWeather.pressure)
         var coordinates = "37.8267,-122.423"
-        getWeatherFor(coordinates)
+        getWeatherFor(coordinates) {(result: (String, String, String)) in
+            self.currentWeather = result
+            print(self.currentWeather.temperature, self.currentWeather.precipitation, self.currentWeather.pressure)
+        }
         
     }
 
@@ -39,7 +43,7 @@ class ViewController: UIViewController {
     }
     
 
-    func getWeatherFor(coordinates: String) {
+    func getWeatherFor(coordinates: String, completion: (String, String, String) -> Void) {
         // Call weather API with a given city id and pre-defined api key
         let APIKey = "1a263a07be7aa120ed40d088a0e2eaa6"
         
@@ -61,10 +65,10 @@ class ViewController: UIViewController {
                 let currentData = response["currently"] as! Dictionary<String, AnyObject>
                 
                 // save current weather data to an internal variable
-                self.currentWeather = (self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
-                
+//                self.currentWeather = (self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
+                completion(self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
                 // get data for the next week
-                let dailyData = response["daily"]
+//                let dailyData = response["daily"]
                 // todo process daily data
             },
             failure: {(operation: AFHTTPRequestOperation, error: NSError) -> Void in
@@ -83,5 +87,6 @@ class ViewController: UIViewController {
         // convert millibar to mmhg
         return String(format: "%.0f", Double(value)!*0.75)
     }
+    
 
 }
