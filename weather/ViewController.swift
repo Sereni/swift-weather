@@ -55,13 +55,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // todo get coordinates from somewhere
         // todo check for missing values
         
-        // @pluto: самый простой способ "выбрать" город – спросить координаты. сделаешь в интерфейсе возможность?
-        
-        getWeatherFor(coordinates) {(result: (String, String, String)) in
-            self.currentWeather = result
+        getWeatherFor(coordinates) {(result: [(String, String, String)]) in
+            
+            // set first tuple as current weather
+            self.currentWeather = result[0]
+            
+            // set all the other tuples as daily forecast
+            self.daily = Array(result[1...7])
         }
         
         self.pckrCity.dataSource = self
@@ -75,7 +77,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
 
-    func getWeatherFor(coordinates: String, completion: (String, String, String) -> Void) {
+    func getWeatherFor(coordinates: String, completion: [(String, String, String)] -> Void) {
         // Call weather API with a given city id and pre-defined api key
         let APIKey = "1a263a07be7aa120ed40d088a0e2eaa6"
         
@@ -93,8 +95,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 
                 // get data for current weather
                 let currentData = response["currently"] as! Dictionary<String, AnyObject>
+                
+                var resultData: [(String, String, String)] = []
+                
+                // store current weather as first element
+                resultData.insert((self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!))), atIndex: 0)
+                
+                // get daily data
+                let container = response["daily"] as! Dictionary<String, AnyObject>
+                let dailyData = container["data"] as! Array<Dictionary<String, AnyObject>>
+                for item in dailyData {
+                    resultData.append((self.to_centigrade(String(item["apparentTemperatureMax"]!)), String(item["icon"]!), self.mbar_to_mmhg(String(item["pressure"]!))))
+                }
 
-                completion(self.to_centigrade(String(currentData["apparentTemperature"]!)), String(currentData["icon"]!), self.mbar_to_mmhg(String(currentData["pressure"]!)))
+                completion(resultData)
             },
             failure: {(operation: AFHTTPRequestOperation, error: NSError) -> Void in
                 print("\(error)")})
@@ -130,8 +144,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         coordinates = cities[row].cityCoord
-        getWeatherFor(coordinates) {(result: (String, String, String)) in
-            self.currentWeather = result
+        getWeatherFor(coordinates) {(result: [(String, String, String)]) in
+            self.currentWeather = result[0]
+            self.daily = Array(result[1...7])
             self.lblTemperature.text = self.currentWeather.temperature
         }
         
