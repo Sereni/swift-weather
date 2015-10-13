@@ -34,8 +34,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var imgBig: UIImageView!
     
     @IBOutlet weak var pckrCity: UIPickerView!
+    @IBOutlet weak var lblDate: UILabel!
 
+    @IBOutlet weak var lbl1: UILabel!
+    @IBOutlet weak var lbl2: UILabel!
+    @IBOutlet weak var lbl3: UILabel!
         
+    let td = NSDate()
+    
+    
     // кортеж с погодой на этот момент
     	// precipitation содержит название иконки, если не будет картинок, можно переделать
     let cities: [cityLocation] = [
@@ -76,6 +83,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         lblTemperature.textColor = UIColor.darkGrayColor()
         lblPressure.font = UIFont.systemFontOfSize(20)
         lblPressure.textColor = UIColor.grayColor()
+        lblDate.font = UIFont.systemFontOfSize(20)
+        lblDate.textColor = UIColor.grayColor()
+        lbl1.font = UIFont.systemFontOfSize(20)
+        lbl1.textColor = UIColor.grayColor()
+        lbl2.font = UIFont.systemFontOfSize(20)
+        lbl2.textColor = UIColor.grayColor()
+        lbl3.font = UIFont.systemFontOfSize(20)
+        lbl3.textColor = UIColor.grayColor()
       
     }
 
@@ -96,6 +111,22 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.img = UIImage(named: self.currentWeather.precipitation+".png")
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
+            
+            let tomorrow = self.td.dateByAddingTimeInterval(24 * 60 * 60)
+            let dat = self.td.dateByAddingTimeInterval(2*24 * 60 * 60)
+            let datat = self.td.dateByAddingTimeInterval(3*24 * 60 * 60)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMMM"
+            
+            self.lbl1.text = dateFormatter.stringFromDate(tomorrow)+": "+self.daily[0].temperature+"°С, " + self.daily[0].pressure+" mm Hg"
+            self.lbl2.text = dateFormatter.stringFromDate(dat)+": "+self.daily[1].temperature+"°С, " + self.daily[1].pressure+" mm Hg"
+            self.lbl3.text = dateFormatter.stringFromDate(datat)+": "+self.daily[3].temperature+"°С, " + self.daily[3].pressure+" mm Hg"
+
+            
+            dateFormatter.dateStyle = .LongStyle
+            
+            self.lblDate.text = dateFormatter.stringFromDate(self.td)
+        
         }
     }
     
@@ -161,6 +192,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
+        
         return cities.count
     }
     
@@ -181,6 +213,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.img = UIImage(named: self.currentWeather.precipitation+".png")
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
+            
+            let tomorrow = self.td.dateByAddingTimeInterval(24 * 60 * 60)
+            let dat = self.td.dateByAddingTimeInterval(2*24 * 60 * 60)
+            let datat = self.td.dateByAddingTimeInterval(3*24 * 60 * 60)
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "dd MMMM"
+            
+            self.lbl1.text = dateFormatter.stringFromDate(tomorrow)+": "+self.daily[0].temperature+"°С, " + self.daily[0].pressure+" mm Hg"
+            
+            self.lbl2.text = dateFormatter.stringFromDate(dat)+": "+self.daily[1].temperature+"°С, " + self.daily[1].pressure+" mm Hg"
+            
+            self.lbl3.text = dateFormatter.stringFromDate(datat)+": "+self.daily[3].temperature+"°С, " + self.daily[3].pressure+" mm Hg"
+            
+
             
             
         }
