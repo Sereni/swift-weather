@@ -31,17 +31,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var lblTemperature: UILabel!
     @IBOutlet weak var lblPressure: UILabel!
    
+    @IBOutlet weak var imgBig: UIImageView!
+    
     @IBOutlet weak var pckrCity: UIPickerView!
-    
-    
-    
+
+        
     // кортеж с погодой на этот момент
-    // precipitation содержит название иконки, если не будет картинок, можно переделать
+    	// precipitation содержит название иконки, если не будет картинок, можно переделать
     let cities: [cityLocation] = [
         cityLocation(cityName: "Moscow", cityCoord: "55.7522,37.6155"),
         cityLocation(cityName: "St. Petersburg", cityCoord: "59.9386,30.3141"),
         cityLocation(cityName: "Los Angeles", cityCoord: "37.8267,-122.423")
     ]
+    var img: UIImage?
     
     var currentWeather: (temperature: String, precipitation: String, pressure: String) = ("--", "--", "--")
     
@@ -49,6 +51,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     var daily: [(temperature: String, precipitation: String, pressure: String)] = []
     
     var coordinates = "37.8267,-122.423"
+    
     
     
     override func viewDidLoad() {
@@ -69,13 +72,38 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.pckrCity.dataSource = self
         self.pckrCity.delegate = self
         
+        lblTemperature.font = UIFont.systemFontOfSize(60)
+        lblTemperature.textColor = UIColor.darkGrayColor()
+        lblPressure.font = UIFont.systemFontOfSize(20)
+        lblPressure.textColor = UIColor.grayColor()
+      
     }
 
+    override func viewDidAppear(animated: Bool) {
+        //Работает только для города под нулевым номером. Если запоминаем выбор, то нужно переделать
+        
+        pckrCity.selectRow(0, inComponent: 0, animated: true)
+        
+        
+        
+        coordinates = cities[0].cityCoord
+        getWeatherFor(coordinates) {(result: [(String, String, String)]) in
+            self.currentWeather = result[0]
+            self.daily = Array(result[1...7])
+            self.lblTemperature.text = self.currentWeather.temperature+"°С"
+            self.lblPressure.text = self.currentWeather.pressure+" mm Hg"
+            
+            self.img = UIImage(named: self.currentWeather.precipitation+".png")
+            self.imgBig.image = self.img
+            self.view.addSubview(self.imgBig)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 
     func getWeatherFor(coordinates: String, completion: [(String, String, String)] -> Void) {
         // Call weather API with a given city id and pre-defined api key
@@ -147,7 +175,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         getWeatherFor(coordinates) {(result: [(String, String, String)]) in
             self.currentWeather = result[0]
             self.daily = Array(result[1...7])
-            self.lblTemperature.text = self.currentWeather.temperature
+            self.lblTemperature.text = self.currentWeather.temperature+"°С"
+            self.lblPressure.text = self.currentWeather.pressure+" mm Hg"
+            
+            self.img = UIImage(named: self.currentWeather.precipitation+".png")
+            self.imgBig.image = self.img
+            self.view.addSubview(self.imgBig)
+            
+            
         }
         
         
