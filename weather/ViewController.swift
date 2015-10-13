@@ -52,7 +52,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var img6: UIImageView!
     @IBOutlet weak var img7: UIImageView!
     
-    
+    let defaultCity = NSUserDefaults.standardUserDefaults()
     
         
     let td = NSDate()
@@ -121,12 +121,15 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     override func viewDidAppear(animated: Bool) {
         //Работает только для города под нулевым номером. Если запоминаем выбор, то нужно переделать
         
-        pckrCity.selectRow(0, inComponent: 0, animated: true)
+        let defRow = defaultCity.integerForKey("itsme")
+        
+        
+        pckrCity.selectRow(defRow, inComponent: 0, animated: true)
         
         var i: UIImage!
         
         
-        coordinates = cities[0].cityCoord
+        coordinates = cities[defRow].cityCoord
         getWeatherFor(coordinates) {(result: [(String, String, String)]) in
             self.currentWeather = result[0]
             self.daily = Array(result[1...7])
@@ -262,6 +265,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             
             
+            
+            
+            self.defaultCity.setInteger(row, forKey: "itsme")
+            
+            
 
             
             
@@ -269,6 +277,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         
     }	
+
 
    
    
