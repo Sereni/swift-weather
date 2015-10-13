@@ -58,8 +58,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     let td = NSDate()
     let dateFormatter = NSDateFormatter()
     
-    // кортеж с погодой на этот момент
-    	// precipitation содержит название иконки, если не будет картинок, можно переделать
+    
     let cities: [cityLocation] = [
         cityLocation(cityName: "Moscow", cityCoord: "55.7522,37.6155"),
         cityLocation(cityName: "St. Petersburg", cityCoord: "59.9386,30.3141"),
@@ -67,6 +66,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     ]
     var img: UIImage?
     
+    // кортеж с погодой на этот момент
     var currentWeather: (temperature: String, precipitation: String, pressure: String) = ("--", "--", "--")
     
     // массив погоды по дням, устройство как у currentWeather
@@ -107,13 +107,21 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.pckrCity.dataSource = self
         self.pckrCity.delegate = self
         
+        
+        lblTemperature.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        lblPressure.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        lblDate.backgroundColor = UIColor(white: 1, alpha: 0.6)
+        pckrCity.backgroundColor = UIColor(white: 1, alpha: 0.6)
         lblTemperature.font = UIFont.systemFontOfSize(60)
         lblTemperature.textColor = UIColor.darkGrayColor()
         lblPressure.font = UIFont.systemFontOfSize(20)
-        lblPressure.textColor = UIColor.grayColor()
+        lblPressure.textColor = UIColor.darkGrayColor()
         lblDate.font = UIFont.systemFontOfSize(20)
-        lblDate.textColor = UIColor.grayColor()
+        lblDate.textColor = UIColor.darkGrayColor()
         
+        /*var i: UIImage!
+        i = UIImage(named: "sunbck.jpg")
+        self.view.backgroundColor = UIColor(patternImage: i)*/
         
       
     }
@@ -126,7 +134,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         pckrCity.selectRow(defRow, inComponent: 0, animated: true)
         
-        var i: UIImage!
+        
         
         
         coordinates = cities[defRow].cityCoord
@@ -218,9 +226,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func fillDaily(lbl: UILabel,  num: Int){
         var N: Double!
        
-        
+        lbl.backgroundColor = UIColor(white: 1, alpha: 0.5)
         lbl.font = UIFont.systemFontOfSize(15)
-        lbl.textColor = UIColor.grayColor()
+        lbl.textColor = UIColor.darkGrayColor()
         
         N = Double(num+1)
         let ftrDate = self.td.dateByAddingTimeInterval(N*24 * 60 * 60)
@@ -265,8 +273,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             
             
-            
-            
+            // Запоминаем выбранный последним город
             self.defaultCity.setInteger(row, forKey: "itsme")
             
             
