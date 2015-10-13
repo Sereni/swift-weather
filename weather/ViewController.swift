@@ -150,7 +150,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             self.lblDate.text = self.dateFormatter.stringFromDate(self.td)
             
+            var i: UIImage!
             
+            
+            i = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
+            
+            
+            self.view.backgroundColor = UIColor(patternImage: i)
             var _: Int
             for i in 0...6	{
                 self.fillDaily(self.dailyLbls[i], num: i)
@@ -158,13 +164,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }
         
         }
-       // var i: UIImage!
         
-        
-        //i = UIImage(named: self.currentWeather"bck.jpg")
-        
-        
-        //self.view.backgroundColor = UIColor(patternImage: i)
     }
     
     override func didReceiveMemoryWarning() {
@@ -231,9 +231,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func fillDaily(lbl: UILabel,  num: Int){
         var N: Double!
        
-        lbl.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        lbl.backgroundColor = UIColor(white: 1, alpha: 0.6)
         lbl.font = UIFont.systemFontOfSize(15)
-        lbl.textColor = UIColor.darkGrayColor()
+       
         
         N = Double(num+1)
         let ftrDate = self.td.dateByAddingTimeInterval(N*24 * 60 * 60)
@@ -276,7 +276,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                 
             }
             
+            var im: UIImage!
             
+            
+            im = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
+            
+            
+            self.view.backgroundColor = UIColor(patternImage: im)
             
             // Запоминаем выбранный последним город
             self.defaultCity.setInteger(row, forKey: "itsme")
