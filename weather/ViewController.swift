@@ -28,6 +28,7 @@ class cityLocation {
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var lblTemperature: UILabel!
     @IBOutlet weak var lblPressure: UILabel!
@@ -53,9 +54,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var img6: UIImageView!
     @IBOutlet weak var img7: UIImageView!
     
+    //дефолтные параметры для юзера
     let defaultCity = NSUserDefaults.standardUserDefaults()
     
-        
+    //сегодняшняя дата и формат дат
     let td = NSDate()
     let dateFormatter = NSDateFormatter()
     
@@ -75,6 +77,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var coordinates = "37.8267,-122.423"
     
+    // массив лейблов с прогнозом
     var dailyLbls:[UILabel] = []
     
     override func viewDidLoad() {
@@ -93,9 +96,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             
             
-            
         }
-        
+       //добавление лейблов к массиву
         self.dailyLbls.append(self.lbl1)
         self.dailyLbls.append(self.lbl2)
         self.dailyLbls.append(self.lbl3)
@@ -108,7 +110,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         self.pckrCity.dataSource = self
         self.pckrCity.delegate = self
         
-        
+        //шрифты и фоны лейблов
         lblTemperature.backgroundColor = UIColor(white: 1, alpha: 0.6)
         lblPressure.backgroundColor = UIColor(white: 1, alpha: 0.6)
         lblDate.backgroundColor = UIColor(white: 1, alpha: 0.6)
@@ -121,48 +123,46 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         lblDate.textColor = UIColor.darkGrayColor()
         
         
-        
       
     }
 
     override func viewDidAppear(animated: Bool) {
-        //Работает только для города под нулевым номером. Если запоминаем выбор, то нужно переделать
         
+        //по ключу получаем дефолтные значения (один юзер, поэтому ключ роли не играет)
         let defRow = defaultCity.integerForKey("itsme")
         
-        
+        //установка выбранного элемента списка
         pckrCity.selectRow(defRow, inComponent: 0, animated: true)
         
         
-        
-        
         coordinates = cities[defRow].cityCoord
+        
         getWeatherFor(coordinates) {(result: [(String, String, String)]) in
             self.currentWeather = result[0]
             self.daily = Array(result[1...7])
+            
+            //вывод данных по дефолтному городу
             self.lblTemperature.text = self.currentWeather.temperature+"°С"
             self.lblPressure.text = self.currentWeather.pressure+" mm Hg"
-            
             self.img = UIImage(named: self.currentWeather.precipitation+".png")
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
-            
+            //вывод даты в формате дата - месяц буквами - год
             self.dateFormatter.dateStyle = .LongStyle
-            
             self.lblDate.text = self.dateFormatter.stringFromDate(self.td)
             
             var i: UIImage!
-            
+                     
             
             i = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
             
             
 //            self.view.backgroundColor = UIColor(patternImage: i)
             self.bgImage.image = i
-            
-            var _: Int
-            for i in 0...6	{
-                self.fillDaily(self.dailyLbls[i], num: i)
+            //заполнение прогноза
+            var k: Int
+            for k in 0...6	{
+                self.fillDaily(self.dailyLbls[k], num: k)
                 
             }
         
@@ -225,12 +225,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return String(format: "%.0f", Double(value)!*0.75)
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        
-        return 1
-    }
     
-    
+    //здесь заполняется прогноз
     func fillDaily(lbl: UILabel,  num: Int){
         var N: Double!
        
@@ -239,13 +235,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
        
         
         N = Double(num+1)
+        //получение будущую дату добавлением временного интервала к сегодняшней
         let ftrDate = self.td.dateByAddingTimeInterval(N*24 * 60 * 60)
         
-        
+        //вывод в формате ден - месяц буквами
         dateFormatter.dateFormat = "dd MMMM"
         
         lbl.text = dateFormatter.stringFromDate(ftrDate)+": "+self.daily[num].temperature+"°С, " + self.daily[num].pressure+" mm Hg"
         
+    }
+
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        
+        return 1
     }
 
     
@@ -254,38 +256,39 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         return cities.count
     }
-    
+    //делаем список названий городов
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         
         return cities[row].cityName
     }
     
+    //происходящее при выборе города из списка
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         coordinates = cities[row].cityCoord
+        
         getWeatherFor(coordinates) {(result: [(String, String, String)]) in
             self.currentWeather = result[0]
             self.daily = Array(result[1...7])
+            
+            //обновляются лейблы, значок погоды
             self.lblTemperature.text = self.currentWeather.temperature+"°С"
             self.lblPressure.text = self.currentWeather.pressure+" mm Hg"
-            
             self.img = UIImage(named: self.currentWeather.precipitation+".png")
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
             
+            
+            //заполнение прогноза
             var i: Int = 1
             for i in 0...6	{
                 self.fillDaily(self.dailyLbls[i], num: i)
                 
             }
-            
+            //меняется фон
             var im: UIImage!
-            
-            
             im = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
-            
-            
-//            self.view.backgroundColor = UIColor(patternImage: im)
+            //self.view.backgroundColor = UIColor(patternImage: im)
             self.bgImage.image = im
             
             // Запоминаем выбранный последним город
