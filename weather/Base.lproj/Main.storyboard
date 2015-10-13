@@ -101,7 +101,7 @@
                                     <constraint firstAttribute="height" constant="21" id="Z7a-dx-sSf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Vvr-hn-sCJ">
@@ -169,7 +169,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="bgImage" destination="y6M-rd-lY7" id="El9-G2-bYO"/>
+                        <outlet property="bgImage" destination="y6M-rd-lY7" id="k8B-Ge-LrF"/>
                         <outlet property="imgBig" destination="dLc-Rq-gw3" id="3I3-rs-oHL"/>
                         <outlet property="lbl1" destination="xK3-WO-NVz" id="Q1L-vM-BJD"/>
                         <outlet property="lbl2" destination="X0Z-P1-uj4" id="hKH-tj-2SZ"/>
