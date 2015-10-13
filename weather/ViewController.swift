@@ -119,9 +119,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         lblDate.font = UIFont.systemFontOfSize(20)
         lblDate.textColor = UIColor.darkGrayColor()
         
-        /*var i: UIImage!
-        i = UIImage(named: "sunbck.jpg")
-        self.view.backgroundColor = UIColor(patternImage: i)*/
+        
         
       
     }
@@ -160,6 +158,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             }
         
         }
+       // var i: UIImage!
+        
+        
+        //i = UIImage(named: self.currentWeather"bck.jpg")
+        
+        
+        //self.view.backgroundColor = UIColor(patternImage: i)
     }
     
     override func didReceiveMemoryWarning() {
