@@ -30,7 +30,6 @@
 		84E09D841BCC83DE00E4206A /* rain.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E09D7B1BCC83DE00E4206A /* rain.png */; settings = {ASSET_TAGS = (); }; };
 		84E09D851BCC83DE00E4206A /* sleet.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E09D7C1BCC83DE00E4206A /* sleet.png */; settings = {ASSET_TAGS = (); }; };
 		84E09D861BCC83DE00E4206A /* snow.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E09D7D1BCC83DE00E4206A /* snow.png */; settings = {ASSET_TAGS = (); }; };
-		84E09D8C1BCC9AEB00E4206A /* TableViewDaily.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E09D8B1BCC9AEB00E4206A /* TableViewDaily.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,7 +69,6 @@
 		84E09D7B1BCC83DE00E4206A /* rain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rain.png; path = ../../../Downloads/rain.png; sourceTree = "<group>"; };
 		84E09D7C1BCC83DE00E4206A /* sleet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sleet.png; path = ../../../Downloads/sleet.png; sourceTree = "<group>"; };
 		84E09D7D1BCC83DE00E4206A /* snow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = snow.png; path = ../../../Downloads/snow.png; sourceTree = "<group>"; };
-		84E09D8B1BCC9AEB00E4206A /* TableViewDaily.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDaily.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +141,6 @@
 				14B4F61E1BC4F85F00EEF116 /* AppDelegate.swift */,
 				14B4F6201BC4F85F00EEF116 /* ViewController.swift */,
 				14B4F6221BC4F85F00EEF116 /* Main.storyboard */,
-				84E09D8B1BCC9AEB00E4206A /* TableViewDaily.swift */,
 				14B4F6251BC4F85F00EEF116 /* Assets.xcassets */,
 				14B4F6271BC4F85F00EEF116 /* LaunchScreen.storyboard */,
 				14B4F62A1BC4F85F00EEF116 /* Info.plist */,
@@ -239,7 +236,6 @@
 				14B4F6211BC4F85F00EEF116 /* ViewController.swift in Sources */,
 				147AA02C1BCA515B00ECBF88 /* AFHTTPSessionManager.m in Sources */,
 				147AA02B1BCA515B00ECBF88 /* AFHTTPRequestOperationManager.m in Sources */,
-				84E09D8C1BCC9AEB00E4206A /* TableViewDaily.swift in Sources */,
 				147AA02D1BCA515B00ECBF88 /* AFNetworkReachabilityManager.m in Sources */,
 				14B4F61F1BC4F85F00EEF116 /* AppDelegate.swift in Sources */,
 			);
