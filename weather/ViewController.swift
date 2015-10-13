@@ -39,9 +39,24 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var lbl1: UILabel!
     @IBOutlet weak var lbl2: UILabel!
     @IBOutlet weak var lbl3: UILabel!
+    @IBOutlet weak var lbl4: UILabel!
+    @IBOutlet weak var lbl5: UILabel!
+    @IBOutlet weak var lbl6: UILabel!
+    @IBOutlet weak var lbl7: UILabel!
+    
+    @IBOutlet weak var img1: UIImageView!
+    @IBOutlet weak var img2: UIImageView!
+    @IBOutlet weak var img3: UIImageView!
+    @IBOutlet weak var img4: UIImageView!
+    @IBOutlet weak var img5: UIImageView!
+    @IBOutlet weak var img6: UIImageView!
+    @IBOutlet weak var img7: UIImageView!
+    
+    
+    
         
     let td = NSDate()
-    
+    let dateFormatter = NSDateFormatter()
     
     // кортеж с погодой на этот момент
     	// precipitation содержит название иконки, если не будет картинок, можно переделать
@@ -59,7 +74,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     var coordinates = "37.8267,-122.423"
     
-    
+    var dailyLbls:[UILabel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +89,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             
             // set all the other tuples as daily forecast
             self.daily = Array(result[1...7])
+            
+            
+            
+            
         }
+        
+        self.dailyLbls.append(self.lbl1)
+        self.dailyLbls.append(self.lbl2)
+        self.dailyLbls.append(self.lbl3)
+        self.dailyLbls.append(self.lbl4)
+        self.dailyLbls.append(self.lbl5)
+        self.dailyLbls.append(self.lbl6)
+        self.dailyLbls.append(self.lbl7)
+        
         
         self.pckrCity.dataSource = self
         self.pckrCity.delegate = self
@@ -85,12 +113,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         lblPressure.textColor = UIColor.grayColor()
         lblDate.font = UIFont.systemFontOfSize(20)
         lblDate.textColor = UIColor.grayColor()
-        lbl1.font = UIFont.systemFontOfSize(20)
-        lbl1.textColor = UIColor.grayColor()
-        lbl2.font = UIFont.systemFontOfSize(20)
-        lbl2.textColor = UIColor.grayColor()
-        lbl3.font = UIFont.systemFontOfSize(20)
-        lbl3.textColor = UIColor.grayColor()
+        
+        
       
     }
 
@@ -99,6 +123,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         
         pckrCity.selectRow(0, inComponent: 0, animated: true)
         
+        var i: UIImage!
         
         
         coordinates = cities[0].cityCoord
@@ -112,20 +137,16 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
             
-            let tomorrow = self.td.dateByAddingTimeInterval(24 * 60 * 60)
-            let dat = self.td.dateByAddingTimeInterval(2*24 * 60 * 60)
-            let datat = self.td.dateByAddingTimeInterval(3*24 * 60 * 60)
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMMM"
+            self.dateFormatter.dateStyle = .LongStyle
             
-            self.lbl1.text = dateFormatter.stringFromDate(tomorrow)+": "+self.daily[0].temperature+"°С, " + self.daily[0].pressure+" mm Hg"
-            self.lbl2.text = dateFormatter.stringFromDate(dat)+": "+self.daily[1].temperature+"°С, " + self.daily[1].pressure+" mm Hg"
-            self.lbl3.text = dateFormatter.stringFromDate(datat)+": "+self.daily[3].temperature+"°С, " + self.daily[3].pressure+" mm Hg"
-
+            self.lblDate.text = self.dateFormatter.stringFromDate(self.td)
             
-            dateFormatter.dateStyle = .LongStyle
             
-            self.lblDate.text = dateFormatter.stringFromDate(self.td)
+            var _: Int
+            for i in 0...6	{
+                self.fillDaily(self.dailyLbls[i], num: i)
+                
+            }
         
         }
     }
@@ -190,6 +211,25 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         return 1
     }
     
+    
+    func fillDaily(lbl: UILabel,  num: Int){
+        var N: Double!
+       
+        
+        lbl.font = UIFont.systemFontOfSize(15)
+        lbl.textColor = UIColor.grayColor()
+        
+        N = Double(num+1)
+        let ftrDate = self.td.dateByAddingTimeInterval(N*24 * 60 * 60)
+        
+        
+        dateFormatter.dateFormat = "dd MMMM"
+        
+        lbl.text = dateFormatter.stringFromDate(ftrDate)+": "+self.daily[num].temperature+"°С, " + self.daily[num].pressure+" mm Hg"
+        
+    }
+
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         
@@ -214,17 +254,13 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             self.imgBig.image = self.img
             self.view.addSubview(self.imgBig)
             
-            let tomorrow = self.td.dateByAddingTimeInterval(24 * 60 * 60)
-            let dat = self.td.dateByAddingTimeInterval(2*24 * 60 * 60)
-            let datat = self.td.dateByAddingTimeInterval(3*24 * 60 * 60)
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.dateFormat = "dd MMMM"
+            var i: Int = 1
+            for i in 0...6	{
+                self.fillDaily(self.dailyLbls[i], num: i)
+                
+            }
             
-            self.lbl1.text = dateFormatter.stringFromDate(tomorrow)+": "+self.daily[0].temperature+"°С, " + self.daily[0].pressure+" mm Hg"
             
-            self.lbl2.text = dateFormatter.stringFromDate(dat)+": "+self.daily[1].temperature+"°С, " + self.daily[1].pressure+" mm Hg"
-            
-            self.lbl3.text = dateFormatter.stringFromDate(datat)+": "+self.daily[3].temperature+"°С, " + self.daily[3].pressure+" mm Hg"
             
 
             
