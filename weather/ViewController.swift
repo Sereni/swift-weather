@@ -28,6 +28,7 @@ class cityLocation {
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var lblTemperature: UILabel!
     @IBOutlet weak var lblPressure: UILabel!
    
@@ -156,7 +157,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             i = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
             
             
-            self.view.backgroundColor = UIColor(patternImage: i)
+//            self.view.backgroundColor = UIColor(patternImage: i)
+            self.bgImage.image = i
+            
             var _: Int
             for i in 0...6	{
                 self.fillDaily(self.dailyLbls[i], num: i)
@@ -282,7 +285,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             im = UIImage(named: self.currentWeather.precipitation+"bck.jpg")
             
             
-            self.view.backgroundColor = UIColor(patternImage: im)
+//            self.view.backgroundColor = UIColor(patternImage: im)
+            self.bgImage.image = im
             
             // Запоминаем выбранный последним город
             self.defaultCity.setInteger(row, forKey: "itsme")
